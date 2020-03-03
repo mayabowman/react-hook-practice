@@ -45,6 +45,7 @@ function App({ text, maxLength}) {
         )}
       </span>
       <div className='random-number'>
+        <h2>Add Random Number</h2>
         <button onClick={addItem}>Add a Number</button>
         <ul>
           {items.map(item => (
@@ -53,6 +54,7 @@ function App({ text, maxLength}) {
         </ul>
       </div>
       <form onSubmit={printValues}>
+        <h2>useState With Arrays</h2>
         <label>
           Username:
           <input
