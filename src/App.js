@@ -4,6 +4,8 @@ function App({ text, maxLength}) {
   const [count, setCount] = useState(0);
   const [hidden, setHidden] = useState(true);
   const [items, setItems] = useState([]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   if (text.length <= maxLength) {
     return <span>{text}</span>
@@ -17,6 +19,11 @@ function App({ text, maxLength}) {
         value: Math.random() * 100
       }
     ])
+  }
+
+  function printValues(e) {
+    e.preventDefault();
+    console.log(username, password)
   }
 
 
@@ -45,6 +52,29 @@ function App({ text, maxLength}) {
           ))}
         </ul>
       </div>
+      <form onSubmit={printValues}>
+        <label>
+          Username:
+          <input
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            name='username'
+            type='text'
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            name='password'
+            type='password'
+          />
+        </label>
+        <br />
+        <button>Submit</button>
+      </form>
     </div>
   );
 }
