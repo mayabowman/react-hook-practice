@@ -6,6 +6,10 @@ function App({ text, maxLength}) {
   const [items, setItems] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [form, setState] = useState({
+    username: '',
+    password: ''
+  })
 
   if (text.length <= maxLength) {
     return <span>{text}</span>
@@ -24,6 +28,18 @@ function App({ text, maxLength}) {
   function printValues(e) {
     e.preventDefault();
     console.log(username, password)
+  }
+
+  function printObjValues(e) {
+    e.preventDefault();
+    console.log(form.username, form.password)
+  }
+
+  function updateField(e) {
+    setState({
+      ...form,
+      [e.target.name]: e.target.value
+    })
   }
 
 
@@ -70,6 +86,30 @@ function App({ text, maxLength}) {
           <input
             value={password}
             onChange={e => setPassword(e.target.value)}
+            name='password'
+            type='password'
+          />
+        </label>
+        <br />
+        <button>Submit</button>
+      </form>
+      <form onSubmit={printObjValues}>
+        <h2>useState With Objects</h2>
+        <label>
+          Username:
+          <input
+            value={form.username}
+            onChange={updateField}
+            name='username'
+            type='text'
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            value={form.password}
+            onChange={updateField}
             name='password'
             type='password'
           />
